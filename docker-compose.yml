@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    env_file:
+        - default.env
+
+  nginx:
+    container_name: gateway
+    build: ./nginx
+    ports:
+      - "80:80"
+    env_file:
+        - default.env
+        
+    depends_on:
+      - backend
